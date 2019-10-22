@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "../src/assets/css/App.css"
 import imagem from '../src/assets/img/Popcorn.jpg'
+import {parseJwt} from './services/auth'
+
 
 import Axios from 'axios';
 
@@ -40,7 +42,13 @@ export default class App extends Component {
         if (data.status == 200) {
           // console.log(data.data.token)
           localStorage.setItem("usuario-opflix", data.data.token);
-          this.props.history.push('/Home');
+          if (parseJwt().tipo == "Cliente") {
+            
+            this.props.history.push('/Home');
+
+          }else{
+            this.props.history.push("/HomeAdm")
+          }
         } else {
           console.log("Errou!");
         }
@@ -51,6 +59,31 @@ export default class App extends Component {
         console.log(erro)
       })
   }
+
+  // efetuarLogin = (event) => {
+  //   event.preventDefault();
+
+  //   Axios.post("http://localhost:5000/api/login", {
+  //       email: this.state.email,
+  //       senha: this.state.senha
+  //   })
+
+  //       .then(data => {
+  //           console.log(data);
+  //           if (data.status === 200) {
+
+  //               localStorage.setItem("usuario-opflix", data.data.token)
+  //               if (parseJwt().tipo == "Cliente") {
+
+  //                   this.props.history.push('/home')
+  //               }
+  //               else {
+  //                   this.props.history.push('/adm')
+  //               }
+  //           } else {
+  //               console.log("Erroooooooou")
+  //           }
+  //       })
 
   render() {
 

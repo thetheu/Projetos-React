@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {parseJwt} from './services/auth'
 
 
 //paginas
@@ -23,11 +24,27 @@ const RotaPrivada = ({ component: Component }) => (
                     <Component {...props} />
                 ) : (
                     <Redirect
-                        to={{ pathname: "/Login", state: { from: props.location } }}
+                        to={{ pathname: "/Home", state: { from: props.location } }}
                     />
                 )
         }
     />
+)
+
+const RotaAdmin = ({component: Component}) =>(
+    <Router
+        render={ props=>
+            localStorage.getItem("usuario-opflix") !== null && parseJwt().tipo !== 'Cliente' ?
+            (
+                <Component {...props}/>
+            ): (
+                <Redirect 
+                    to={{pathname: "/HomeAdm", state: {from: props.location}}}
+                />
+            )
+        }
+    
+   />
 )
 
 
@@ -38,8 +55,8 @@ const routing = (
                 <Route exact path='/' component={App} />
                 <Route path='/Cadastro' component={Cadastro} />
                 <RotaPrivada path='/Home' component={Home}/>
-                <RotaPrivada path='/HomeAdm' component={HomeAdm} />
-                <RotaPrivada path='/Genero' component={Genero}/>
+                <RotaAdmin path='/HomeAdm' component={HomeAdm} />
+                <Route path='/Genero' component={Genero}/>
             </Switch>
         </div>
     </Router>
