@@ -12,12 +12,8 @@ import teste2 from "../../assets/img/greys.jpg";
 import teste3 from "../../assets/img/versace.png";
 import teste4 from "../../assets/img/thewalking.jfif";
 
-
-
-
-
-export default class Home extends Component{
-    constructor(){
+export default class Home extends Component {
+    constructor() {
         super();
         this.state = {
             lista: [
@@ -26,48 +22,48 @@ export default class Home extends Component{
         }
     }
 
-    listarLancamentos = () =>{
+    listarLancamentos = () => {
         fetch('http://localhost:5000/api/Categorias')
             .then(response => response.json())
-            .then(data => this.setState({lista: data}));
+            .then(data => this.setState({ lista: data }));
     }
 
-    
+
     render() {
-        return(
+        return (
             <div>
-                <Nav/>
-          
-            <h3 style={{ textAlign: "center", marginTop: "50px", fontFamily: "Fredoka One, cursive", fontSize: "30px", color: "white"}}>Lançamentos</h3>
-            
-            <div><img src={destaque} style={{ width: "1000px", height: "500px", justifyContent: "center", marginLeft: "200px", marginTop: "50px", marginBottom: "100px"}}/></div>
+                <Nav />
 
-            <h2 style={{color: "white", marginLeft: "80px", marginBottom: "10px"}}>Ação</h2>
+                <h3 style={{ textAlign: "center", marginTop: "50px", fontFamily: "Fredoka One, cursive", fontSize: "30px", color: "white" }}>Lançamentos</h3>
 
-            <section style={{display: "flex", justifyContent: "space-around"}}>
-            <li className="titulo1">
-                <a className="colecao1" href="http://localhost:3000/Titulo" style={{color: "white"}}>
-                    <img src={teste} style={{ width: "300px", height: "150px", marginBottom: "100px"}}/>
-                </a>
-            </li>
-            <li className="titulo1">
-                <a className="colecao1" href="http://localhost:3000/Titulo" style={{color: "white"}}>
-                    <img src={teste2} style={{ width: "300px", height: "150px", marginBottom: "100px"}}/>
-                </a>
-            </li>
-            <li className="titulo1">
-                <a className="colecao1" href="http://localhost:3000/Titulo" style={{color: "white"}}>
-                    <img src={teste3} style={{ width: "300px", height: "150px", marginBottom: "100px"}}/>
-                </a>
-            </li>
-            <li className="titulo1">
-                <a className="colecao1" href="http://localhost:3000/Titulo" style={{color: "white"}}>
-                    <img src={teste4} style={{ width: "300px", height: "150px", marginBottom: "100px"}}/>
-                </a>
-            </li>
-            </section>
+                <div><img src={destaque} style={{ width: "1000px", height: "500px", justifyContent: "center", marginLeft: "200px", marginTop: "50px", marginBottom: "100px" }} /></div>
 
-            <Rodape/>
+                <h2 style={{ color: "white", marginLeft: "80px", marginBottom: "10px" }}>Ação</h2>
+
+                <section style={{ display: "flex", justifyContent: "space-around" }}>
+                    <li className="titulo1">
+                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
+                            <img src={teste} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
+                        </a>
+                    </li>
+                    <li className="titulo1">
+                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
+                            <img src={teste2} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
+                        </a>
+                    </li>
+                    <li className="titulo1">
+                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
+                            <img src={teste3} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
+                        </a>
+                    </li>
+                    <li className="titulo1">
+                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
+                            <img src={teste4} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
+                        </a>
+                    </li>
+                </section>
+
+                <Rodape />
             </div>
         )
     }

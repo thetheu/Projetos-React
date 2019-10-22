@@ -6,7 +6,6 @@ import Rodape from '../../components/Rodape.js';
 
 
 import '../../assets/css/HomeAdm.css'
-import { tsImportEqualsDeclaration } from '@babel/types';
 
 export default class HomeAdm extends Component {
 
@@ -15,12 +14,15 @@ export default class HomeAdm extends Component {
         this.state = {
             listaLancamento: [],
             idCategoriaNavigation: [],
+            idIdentificacaoNavigation: [],
+            idClassificacaoNavigation: [],
+            idPlataformaNavigation: [],
 
             titulo: "",
+            dataLancamento: "",
             sinopse: "",
             tempoDuracao: "",
-            dataLancamento: "",
-            idCategoria: ""
+            veiculo: "",
         }
     }
 
@@ -33,7 +35,7 @@ export default class HomeAdm extends Component {
         fetch("http://localhost:5000/api/filmeSeries", {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') },
             "Content-Type": "application/json",
-            "Accept" : "application/json"
+            "Accept": "application/json"
         })
             .then(respose => respose.json())
             .then(data => this.setState({ listaLancamento: data }))
@@ -46,15 +48,19 @@ export default class HomeAdm extends Component {
 
         fetch('http://localhost:5000/api/filmeSeries', {
             method: "POST",
-            body: JSON.stringify({ titulo: this.state.titulo, 
+            headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix')
+        },
+            
+            body: JSON.stringify({
+                titulo: this.state.titulo,
                 sinopse: this.state.sinopse,
                 tempoDuracao: this.state.tempoDuracao,
                 dataLancamento: this.state.dataLancamento,
-                idCategoria: this.state.idCategoriaNavigation.nome            
-            }),
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') },
-            "Content-Type": "application/json",
-            "Accept" : "application/json"
+                idCategoria: this.state.idCategoriaNavigation
+            })
         })
             .then(response => this.listarCategoria())
             .catch(erro => console.log(erro));
@@ -63,23 +69,30 @@ export default class HomeAdm extends Component {
 
     tituloLancamento = (event) => {
         this.setState({ titulo: event.target.value });
-        console.log(this.state);
-    }
-    sinopseLancamento = (event) => {
-        this.setState({ sinopse: event.target.value });
-        console.log(this.state);
-    }
-    tempoLancamento = (event) => {
-        this.setState({ tempoDuracao: event.target.value });
-        console.log(this.state);
     }
     dataLancamento = (event) => {
         this.setState({ dataLancamento: event.target.value });
-        console.log(this.state);
     }
     categoriaLancamento = (event) => {
-        this.setState({ idCategoria: event.target.value });
-        console.log(this.state);
+        this.setState({ idCategoria: Number(event.target.value) });
+    }
+    identificacaoLancamento = (event) => {
+        this.setState({ idIdentificacao: Number(event.target.value) });
+    }
+    sinopseLancamento = (event) => {
+        this.setState({ sinopse: event.target.value });
+    }
+    tempoDuracaoLancamento = (event) => {
+        this.setState({ tempoDuracao: event.target.value });
+    }
+    veiculoLancamento = (event) => {
+        this.setState({ veiculo: event.target.value });
+    }
+    classificacaoLancamento = (event) => {
+        this.setState({ idClassificacao: (Number(event.target.value) === undefined) ? 1 : Number(event.target.value) });
+    }
+    plataformaLancamento = (event) => {
+        this.setState({ idPlataforma: Number(event.target.value) });
     }
 
 
@@ -100,7 +113,11 @@ export default class HomeAdm extends Component {
                                 <th>Sinopse</th>
                                 <th>Tempo Duração</th>
                                 <th>Data Lançamento</th>
+                                <th>Veiculo</th>
                                 <th>Categoria</th>
+                                <th>Plataforma</th>
+                                <th>Classificação</th>
+                                <th>Identificação</th>
 
                                 <tbody>
                                     {this.state.listaLancamento.map(element => {
@@ -109,22 +126,30 @@ export default class HomeAdm extends Component {
                                                 <td>{element.idLancamento}</td>
                                                 <td>{element.titulo}</td>
                                                 <td>{element.sinopse}</td>
+                                                <td>{element.veiculo}</td>
                                                 <td>{element.tempoDuracao}</td>
                                                 <td>{element.dataLancamento}</td>
-                                                <td>{element.idCategoriaNavigation.nome}</td>
+                                                <td>{(element.idCategoriaNavigation === undefined) ?
+                                                 'Categoria não registrada' : element.idCategoriaNavigation.nome}</td>
+                                                <td>{(element.idPlataformaNavigation === undefined) ?
+                                                 'Plataforma não registrada' : element.idPlataformaNavigation.nome}</td>
+                                                <td>{(element.idClassificacaoNavigation === undefined) ?
+                                                 'Classificação não registrada' : element.idClassificacaoNavigation.nome}</td>
+                                                <td>{(element.idIdentificacaoNavigation === undefined) ?
+                                                 'Identificação não registrada' : element.idIdentificacaoNavigation.nome}</td>
                                             </tr>
                                         )
                                     })}
                                 </tbody>
-                            </tr> 
+                            </tr>
                         </thead>
                     </table>
                 </section>
 
                 <div className="formulario">
-                    <form  onSubmit={this.cadastrarLancamento}>
+                    <form onSubmit={this.cadastrarLancamento}>
                         <input
-                            className="nome"
+                            className="titulo"
                             type="text"
                             placeholder="Nome do Lançamento"
                             value={this.state.titulo}
@@ -142,7 +167,7 @@ export default class HomeAdm extends Component {
                             type="int"
                             placeholder="Tempo de Duração"
                             value={this.state.tempoDuracao}
-                            onChange={this.tempoLancamento}
+                            onChange={this.tempoDuracaoLancamento}
                         />
                         <input
                             className="dataLancamento"
@@ -150,18 +175,46 @@ export default class HomeAdm extends Component {
                             placeholder="Data de Lançamento"
                             value={this.state.dataLancamento}
                             onChange={this.dataLancamento}
-                        />
+                        /> 
                         <input
                             className="categoria"
                             type="int"
                             placeholder="Categoria do Lancamento"
                             value={this.state.idCategoria}
-                            onChange={this.categoriaLancamento}
-                        />                               
+                            onChange={this.idCategoriaNavigation}
+                        /> 
+                        <input
+                            className="veiculo"
+                            type="text"
+                            placeholder="Veiculo"
+                            value={this.state.veiculo}
+                            onChange={this.veiculoLancamento}
+                        />
+                        <input
+                            className="classificacao"
+                            type="text"
+                            placeholder="Classificação"
+                            value={this.state.idClassificacao}
+                            onChange={this.idClassificacaoNavigation}
+                        />
+                        <input
+                            className="plataforma"
+                            type="text"
+                            placeholder="Plataforma"
+                            value={this.state.idPlataforma}
+                            onChange={this.idPlataformaNavigation}
+                        />
+                        <input
+                            className="identificacao"
+                            type="text"
+                            placeholder="Identificação"
+                            value={this.state.idIdentificacao}
+                            onChange={this.idIdentificacaoNavigation}
+                        />
                         <button className="botao">
                             Cadastrar
-                        </button>              
-                                     
+                        </button>
+
                     </form>
                 </div>
 

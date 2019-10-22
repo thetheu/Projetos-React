@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../src/assets/css/App.css"
 import imagem from '../src/assets/img/Popcorn.jpg'
-import {parseJwt} from './services/auth'
+import { parseJwt } from './services/auth'
 
 
 import Axios from 'axios';
@@ -28,7 +28,7 @@ export default class App extends Component {
   mudarEstadoSenha = (event) => {
     this.setState({ senha: event.target.value })
     console.log(this.state.senha);
-    
+
   }
 
   efetuarLogin = (event) => {
@@ -39,14 +39,14 @@ export default class App extends Component {
     })
       .then(data => {
         console.log("olá")
-        if (data.status == 200) {
+        if (data.status === 200) {
           // console.log(data.data.token)
-          localStorage.setItem("usuario-opflix", data.data.token);
-          if (parseJwt().tipo == "Cliente") {
-            
+          localStorage.setItem("usuario-OpFlix", data.data.token);
+          if (parseJwt().Permissao === "CLIENTE") {
+
             this.props.history.push('/Home');
 
-          }else{
+          } else {
             this.props.history.push("/HomeAdm")
           }
         } else {
@@ -89,8 +89,8 @@ export default class App extends Component {
 
     return (
       <div>
-        <div style={{height: "700px"}}>
-        <img src={imagem} style={{ width: '1440px', height: '765px', filter: 'blur(5px)', position: 'relative', opacity: '0.90' }} />
+        <div style={{ height: "700px" }}>
+          <img src={imagem} style={{ width: '1440px', height: '765px', filter: 'blur(5px)', position: 'relative', opacity: '0.90' }} />
         </div>
 
 
@@ -100,30 +100,30 @@ export default class App extends Component {
         </div>
 
         <form >
-        <div className="vid-container">
-          <div className="inner-container">
-            <div className="box">
-              <h1></h1>
-              <input 
-              placeholder="email"
-              type="text" 
-              name="username"
-              id="login__email"
-              onChange={this.mudarEstadoEmail}
-              />
-              <input 
-              placeholder="passoword"
-              type="password" 
-              name="password"
-              id="login__password"
-              onChange={this.mudarEstadoSenha}
-              />
-              <button onClick={this.efetuarLogin}>Login</button>
-              <p>Cadastre-se <span>Sign Up</span></p>
+          <div className="vid-container">
+            <div className="inner-container">
+              <div className="box">
+                <h1></h1>
+                <input
+                  placeholder="email"
+                  type="text"
+                  name="username"
+                  id="login__email"
+                  onChange={this.mudarEstadoEmail}
+                />
+                <input
+                  placeholder="passoword"
+                  type="password"
+                  name="password"
+                  id="login__password"
+                  onChange={this.mudarEstadoSenha}
+                />
+                <button onClick={this.efetuarLogin}>Login</button>
+                <p>Cadastre-se <span>Sign Up</span></p>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
       </div>
     )
   }

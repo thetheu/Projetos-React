@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {parseJwt} from './services/auth'
+import { parseJwt } from './services/auth'
 
 
 //paginas
@@ -13,40 +13,38 @@ import Genero from '../src/pages/Generos/Generos.js';
 import * as serviceWorker from './serviceWorker';
 
 //rotas
-import { Route, Link, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import HomeAdm from './pages/HomeAdm/HomeAdm';
 
-const RotaPrivada = ({ component: Component }) => (
+const RotaAdmin = ({ component: Component }) => (
     <Route
         render={props =>
-            localStorage.getItem("usuario-OpFlix") !== null ?
+            localStorage.getItem("usuario-OpFlix") !== null && parseJwt().Permissao === 'ADMINISTRADOR' ?
                 (
                     <Component {...props} />
                 ) : (
                     <Redirect
-                        to={{ pathname: "/Home", state: { from: props.location } }}
+                        to={{ pathname: "/", state: { from: props.location } }}
                     />
                 )
         }
     />
 )
 
-const RotaAdmin = ({component: Component}) =>(
-    <Router
-        render={ props=>
-            localStorage.getItem("usuario-opflix") !== null && parseJwt().tipo !== 'Cliente' ?
-            (
-                <Component {...props}/>
-            ): (
-                <Redirect 
-                    to={{pathname: "/HomeAdm", state: {from: props.location}}}
-                />
-            )
+const RotaPrivada = ({ component: Component }) => (
+    <Route
+        render={props =>
+            localStorage.getItem("usuario-OpFlix") !== null && parseJwt().Permissao === 'CLIENTE' ?
+                (
+                    <Component {...props} />
+                ) : (
+                    <Redirect
+                        to={{ pathname: "/", state: { from: props.location } }}
+                    />
+                )
         }
-    
-   />
+    />
 )
-
 
 const routing = (
     <Router>
@@ -54,9 +52,9 @@ const routing = (
             <Switch>
                 <Route exact path='/' component={App} />
                 <Route path='/Cadastro' component={Cadastro} />
-                <RotaPrivada path='/Home' component={Home}/>
+                <RotaPrivada path='/Home' component={Home} />
                 <RotaAdmin path='/HomeAdm' component={HomeAdm} />
-                <Route path='/Genero' component={Genero}/>
+                <Route path='/Genero' component={Genero} />
             </Switch>
         </div>
     </Router>
