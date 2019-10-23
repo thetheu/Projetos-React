@@ -4,16 +4,24 @@ import imagem2 from '../../assets/img/popcorn-background-cinema-concept_23-21481
 // import "../src/assets/fontes/banco.ttf";
 
 export default class Cadastro extends Component {
+  constructor(){
+    super();
+    this.state = {
+      nome: "",
+      email: "",
+      senha: ""
+    }
+  }
+
 
   render() {
-
     return (
       <div>
-        <img src={imagem2} style={{ width: '1440px', height: '770px', filter: 'blur(5px)', position: 'relative'}} />
+        <img src={imagem2} style={{ width: '1430px', height: '770px', filter: 'blur(5px)', position: 'relative', border: '1px solid red'}} />
 
         <div className="bla">
           <h1
-          //  style={{fontFamily: 'banco'}}
+            style={{marginTop: "-75px"}}
           >OPFLIX</h1>
         </div>
 
@@ -36,8 +44,8 @@ export default class Cadastro extends Component {
               id="login__password"
               onChange={this.mudarEstadoSenha}
               />
-              <button onClick={this.efetuarLogin}>Login</button>
-              <p>Cadastre-se <span>Sign Up</span></p>
+              <button onClick={this.cadastrarUsuarios}>Cadastre-se</button>
+
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Nav from '../../components/Nav.js';
+import NavAdm from '../../components/NavAdm';
 import Rodape from '../../components/Rodape.js';
 import { Link } from "react-router-dom";
 
@@ -27,7 +27,7 @@ export default class Generos extends Component{
 
     listarGeneros = () =>{
         fetch('http://localhost:5000/api/categoria', {
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') },
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix') },
             "Content-Type": "application/json",
             "Accept" : "application/json"
         })
@@ -40,7 +40,7 @@ export default class Generos extends Component{
     render(){
         return(
             <div>
-                <Nav/>
+                <NavAdm/>
                 <section>
                     <h3 style={{color:"white"}}>Generos</h3>
                     <table style={{color:"white"}}>
@@ -48,6 +48,8 @@ export default class Generos extends Component{
                             <tr>
                                 <th>Id</th>
                                 <th>Categoria</th>
+                            </tr>
+                        </thead>
  
                                 <tbody>
                                     {this.state.listaGenero.map(element => {
@@ -59,8 +61,6 @@ export default class Generos extends Component{
                                         )
                                     })}                                   
                                 </tbody> 
-                            </tr>
-                        </thead>
                     </table>
                 </section>
 

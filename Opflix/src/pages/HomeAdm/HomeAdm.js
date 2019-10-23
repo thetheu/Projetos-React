@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Axios from 'axios';
-import Nav from '../../components/Nav.js';
+import NavAdm from '../../components/NavAdm.js';
 import Rodape from '../../components/Rodape.js';
 
 
@@ -13,10 +13,10 @@ export default class HomeAdm extends Component {
         super();
         this.state = {
             listaLancamento: [],
-            idCategoriaNavigation: [],
-            idIdentificacaoNavigation: [],
-            idClassificacaoNavigation: [],
-            idPlataformaNavigation: [],
+            idCategoriaNavigation: "",
+            idIdentificacaoNavigation: "",
+            idClassificacaoNavigation: "",
+            idPlataformaNavigation: "",
 
             titulo: "",
             dataLancamento: "",
@@ -33,7 +33,7 @@ export default class HomeAdm extends Component {
 
     listarLancamentos = (event) => {
         fetch("http://localhost:5000/api/filmeSeries", {
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-opflix') },
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix') },
             "Content-Type": "application/json",
             "Accept": "application/json"
         })
@@ -49,22 +49,29 @@ export default class HomeAdm extends Component {
         fetch('http://localhost:5000/api/filmeSeries', {
             method: "POST",
             headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix'),
             "Content-Type": "application/json",
-            "Accept": "application/json",
-            'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix')
+            "Accept": "application/json"
         },
             
             body: JSON.stringify({
                 titulo: this.state.titulo,
+                dataLancamento: this.state.dataLancamento,
+                idCategoria: Number(this.state.idCategoriaNavigation),
+                idIdentificacao: Number(this.state.idIdentificacaoNavigation),
                 sinopse: this.state.sinopse,
                 tempoDuracao: this.state.tempoDuracao,
-                dataLancamento: this.state.dataLancamento,
-                idCategoria: this.state.idCategoriaNavigation
+                veiculo: this.state.veiculo,
+                idClassificacao: Number(this.state.idClassificacaoNavigation),
+                idPlataforma: Number(this.state.idPlataformaNavigation)
             })
+            
         })
-            .then(response => this.listarCategoria())
+            
+            .then(response => this.listarLancamentos())
             .catch(erro => console.log(erro));
-    }
+            console.log(this.state)
+        }
 
 
     tituloLancamento = (event) => {
@@ -74,10 +81,10 @@ export default class HomeAdm extends Component {
         this.setState({ dataLancamento: event.target.value });
     }
     categoriaLancamento = (event) => {
-        this.setState({ idCategoria: Number(event.target.value) });
+        this.setState({ idCategoriaNavigation: Number(event.target.value) });
     }
     identificacaoLancamento = (event) => {
-        this.setState({ idIdentificacao: Number(event.target.value) });
+        this.setState({ idIdentificacaoNavigation: Number(event.target.value) });
     }
     sinopseLancamento = (event) => {
         this.setState({ sinopse: event.target.value });
@@ -89,10 +96,11 @@ export default class HomeAdm extends Component {
         this.setState({ veiculo: event.target.value });
     }
     classificacaoLancamento = (event) => {
-        this.setState({ idClassificacao: (Number(event.target.value) === undefined) ? 1 : Number(event.target.value) });
+        this.setState({ idClassificacaoNavigation: (Number(event.target.value) === undefined) ? 1 : Number(event.target.value) });
     }
     plataformaLancamento = (event) => {
-        this.setState({ idPlataforma: Number(event.target.value) });
+        this.setState({ idPlataformaNavigation: Number(event.target.value) });
+        console.log(this.state)
     }
 
 
@@ -101,29 +109,29 @@ export default class HomeAdm extends Component {
     render() {
         return (
             <div>
-                <Nav />
+                <NavAdm />
 
                 <section>
                     <h3 style={{ color: "white" }}>Lançamentos</h3>
-                    <table style={{ color: "white" }}>
+                    <table className="tabela">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Titulo</th>
                                 <th>Sinopse</th>
+                                <th>Veiculo</th>
                                 <th>Tempo Duração</th>
                                 <th>Data Lançamento</th>
-                                <th>Veiculo</th>
                                 <th>Categoria</th>
                                 <th>Plataforma</th>
                                 <th>Classificação</th>
                                 <th>Identificação</th>
+                                    </tr>
+                                    </thead>
 
                                 <tbody>
                                     {this.state.listaLancamento.map(element => {
                                         return (
-                                            <tr key={element.idLancamento}>
-                                                <td>{element.idLancamento}</td>
+                                            <tr key={element.idLancamento} style={{textAlign: "center"}}>
                                                 <td>{element.titulo}</td>
                                                 <td>{element.sinopse}</td>
                                                 <td>{element.veiculo}</td>
@@ -141,8 +149,6 @@ export default class HomeAdm extends Component {
                                         )
                                     })}
                                 </tbody>
-                            </tr>
-                        </thead>
                     </table>
                 </section>
 
@@ -181,7 +187,7 @@ export default class HomeAdm extends Component {
                             type="int"
                             placeholder="Categoria do Lancamento"
                             value={this.state.idCategoria}
-                            onChange={this.idCategoriaNavigation}
+                            onChange={this.categoriaLancamento}
                         /> 
                         <input
                             className="veiculo"
@@ -195,21 +201,21 @@ export default class HomeAdm extends Component {
                             type="text"
                             placeholder="Classificação"
                             value={this.state.idClassificacao}
-                            onChange={this.idClassificacaoNavigation}
+                            onChange={this.classificacaoLancamento}
                         />
                         <input
                             className="plataforma"
                             type="text"
                             placeholder="Plataforma"
                             value={this.state.idPlataforma}
-                            onChange={this.idPlataformaNavigation}
+                            onChange={this.plataformaLancamento}
                         />
                         <input
                             className="identificacao"
                             type="text"
                             placeholder="Identificação"
                             value={this.state.idIdentificacao}
-                            onChange={this.idIdentificacaoNavigation}
+                            onChange={this.identificacaoLancamento}
                         />
                         <button className="botao">
                             Cadastrar

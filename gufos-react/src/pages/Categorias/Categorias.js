@@ -19,7 +19,7 @@ constructor(){
                 // {idCategoria: 1, nome: 'Design'},
                 // {idCategoria: 2, nome: 'Jogos'},
                 // {idCategoria: 3, nome: 'Meetup'}
-            ],
+            ],c=
             nome: ""
         }
     }

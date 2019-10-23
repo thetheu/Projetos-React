@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "../src/assets/css/App.css"
+import { Link } from "react-router-dom";
 import imagem from '../src/assets/img/Popcorn.jpg'
 import { parseJwt } from './services/auth'
 
@@ -119,8 +120,10 @@ export default class App extends Component {
                   onChange={this.mudarEstadoSenha}
                 />
                 <button onClick={this.efetuarLogin}>Login</button>
-                <p>Cadastre-se <span>Sign Up</span></p>
-              </div>
+                <a href="/Cadastro" style={{textDecoration: "none", color: "white"}}>
+                  <p>Cadastre-se</p>
+                  </a>              
+                </div>
             </div>
           </div>
         </form>

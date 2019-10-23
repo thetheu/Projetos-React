@@ -14,7 +14,7 @@ export default function Rodape(){
                     padding: "10px"}}>
                     
                 <a className="h1" 
-                     href="/Home"
+                    href="/HomeAdm"
                     style={{
                     marginLeft: "20px",
                     padding: "10px",
@@ -23,17 +23,25 @@ export default function Rodape(){
                     color: "white"}}>OPFLIX</a>
 
                 <a className="h3a" 
-                     href="/Home"
-                    style={{ marginLeft: "1000px",
+                    href="/HomeAdm"
+                    style={{ marginLeft: "800px",
+                    fontFamily: 'Fredoka One',
+                    color: "white",
+                    textDecoration:"none",
+                }}>Lançamento</a>
+
+                <a className="h3a" 
+                    href="/genero"
+                    style={{ marginLeft: "100px",
                     fontFamily: 'Fredoka One',
                     color: "white",
                     textDecoration:"none",
                     
                     
-                }}>Lançamento</a>
+                }}>Categoria</a>
 
                 <a className="h3b" 
-                     href="/"
+                    href="/"
                     style={{ marginLeft: "100px",
                     fontFamily: 'Fredoka One',
                     color: 'white',

@@ -6,26 +6,39 @@ import Nav from "../../components/Nav";
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
-import destaque from "../../assets/img/retangulo-cinza.jpg";
-import teste from "../../assets/img/ThePolitician.jpg";
-import teste2 from "../../assets/img/greys.jpg";
-import teste3 from "../../assets/img/versace.png";
-import teste4 from "../../assets/img/thewalking.jfif";
 
 export default class Home extends Component {
     constructor() {
         super();
         this.state = {
-            lista: [
+            listaLancamento: [],
+            idCategoriaNavigation: "",
+            idIdentificacaoNavigation: "",
+            idClassificacaoNavigation: "",
+            idPlataformaNavigation: "",
 
-            ],
+            titulo: "",
+            dataLancamento: "",
+            sinopse: "",
+            tempoDuracao: "",
+            veiculo: "",
         }
     }
 
+    componentDidMount() {
+        this.listarLancamentos();
+
+    }
+
     listarLancamentos = () => {
-        fetch('http://localhost:5000/api/Categorias')
-            .then(response => response.json())
-            .then(data => this.setState({ lista: data }));
+        fetch("http://localhost:5000/api/filmeSeries", {
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix') },
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        })
+            .then(respose => respose.json())
+            .then(data => this.setState({ listaLancamento: data }))
+            .catch(err => console.log(err));
     }
 
 
@@ -36,31 +49,44 @@ export default class Home extends Component {
 
                 <h3 style={{ textAlign: "center", marginTop: "50px", fontFamily: "Fredoka One, cursive", fontSize: "30px", color: "white" }}>Lançamentos</h3>
 
-                <div><img src={destaque} style={{ width: "1000px", height: "500px", justifyContent: "center", marginLeft: "200px", marginTop: "50px", marginBottom: "100px" }} /></div>
+                <section>
+                    <table className="tabela">
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Sinopse</th>
+                                <th>Veiculo</th>
+                                <th>Tempo Duração</th>
 
-                <h2 style={{ color: "white", marginLeft: "80px", marginBottom: "10px" }}>Ação</h2>
+                                <th>Categoria</th>
+                                <th>Plataforma</th>
+                                <th>Classificação</th>
+                                <th>Identificação</th>
+                                    </tr>
+                                    </thead>
 
-                <section style={{ display: "flex", justifyContent: "space-around" }}>
-                    <li className="titulo1">
-                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
-                            <img src={teste} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
-                        </a>
-                    </li>
-                    <li className="titulo1">
-                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
-                            <img src={teste2} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
-                        </a>
-                    </li>
-                    <li className="titulo1">
-                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
-                            <img src={teste3} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
-                        </a>
-                    </li>
-                    <li className="titulo1">
-                        <a className="colecao1" href="http://localhost:3000/Titulo" style={{ color: "white" }}>
-                            <img src={teste4} style={{ width: "300px", height: "150px", marginBottom: "100px" }} />
-                        </a>
-                    </li>
+                                <tbody>
+                                    {this.state.listaLancamento.map(element => {
+                                        return (
+                                            <tr key={element.idLancamento}>
+                                                <td>{element.titulo}</td>
+                                                <td>{element.sinopse}</td>
+                                                <td>{element.veiculo}</td>
+                                                <td>{element.tempoDuracao}</td>
+                                                <td>{element.dataLancamento}</td>
+                                                <td>{(element.idCategoriaNavigation === undefined) ?
+                                                 'Categoria não registrada' : element.idCategoriaNavigation.nome}</td>
+                                                <td>{(element.idPlataformaNavigation === undefined) ?
+                                                 'Plataforma não registrada' : element.idPlataformaNavigation.nome}</td>
+                                                <td>{(element.idClassificacaoNavigation === undefined) ?
+                                                 'Classificação não registrada' : element.idClassificacaoNavigation.nome}</td>
+                                                <td>{(element.idIdentificacaoNavigation === undefined) ?
+                                                 'Identificação não registrada' : element.idIdentificacaoNavigation.nome}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                    </table>
                 </section>
 
                 <Rodape />

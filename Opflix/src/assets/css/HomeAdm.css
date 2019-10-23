@@ -13,3 +13,19 @@ body{
 .nome{
     margin-left: 100px;
 }
+
+.tabela{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    justify-items: center;
+    border: 1px solid #ddd;
+    color: #fff;
+    margin-right: 30%;
+}
+.tbody{
+    display: flex;
+}
+.tbody{
+}
+
