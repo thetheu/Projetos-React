@@ -47,7 +47,7 @@ export default class Home extends Component {
             <div>
                 <Nav />
 
-                <h3 style={{ textAlign: "center", marginTop: "50px", fontFamily: "Fredoka One, cursive", fontSize: "30px", color: "white" }}>Lançamentos</h3>
+                <h3 style={{ color: "white", textAlign: "center", marginTop: "50px", fontFamily: "Fredoka One, cursive", fontSize: "30px"}}>Lançamentos</h3>
 
                 <section>
                     <table className="tabela">
@@ -57,7 +57,7 @@ export default class Home extends Component {
                                 <th>Sinopse</th>
                                 <th>Veiculo</th>
                                 <th>Tempo Duração</th>
-
+                                <th>Data Lançamento</th>
                                 <th>Categoria</th>
                                 <th>Plataforma</th>
                                 <th>Classificação</th>
@@ -65,7 +65,7 @@ export default class Home extends Component {
                                     </tr>
                                     </thead>
 
-                                <tbody>
+                                <tbody style={{textAlign: "center"}}>
                                     {this.state.listaLancamento.map(element => {
                                         return (
                                             <tr key={element.idLancamento}>

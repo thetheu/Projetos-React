@@ -10,8 +10,8 @@
 }
 .bla > h1{
   color: yellow;
-  -webkit-text-stroke-width: 2px;  /*largura da borda*/
-  -webkit-text-stroke-color: red;  /*cor da borda*/
+  -webkit-text-stroke-width: 2px;  
+  -webkit-text-stroke-color: red; 
   font-size: 50px;
   font-family: 'Fredoka One', cursive;
 }
@@ -83,4 +83,6 @@
   color:#666;
 }
 
-
+.iaosdui{
+  justify-content: baseline
+}

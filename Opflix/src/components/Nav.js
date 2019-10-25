@@ -14,22 +14,24 @@ export default function Rodape(){
                     padding: "10px"}}>
                     
                 <a className="h1" 
-                     href="/Home"
+                    href="/Home"
                     style={{
                     marginLeft: "20px",
                     padding: "10px",
                     textDecoration:"none",
-                    fontFamily: 'Fredoka One',
-                    color: "white"}}>OPFLIX</a>
+                    fontFamily: "Fredoka One, cursive",
+                    fontSize: "30px",
+                    color: "yellow",
+                    webkitTextStrokeWidth: "1px",
+                    webkitTextStrokeColor: "red"
+                    }}>OPFLIX</a>
 
                 <a className="h3a" 
                      href="/Home"
-                    style={{ marginLeft: "1000px",
+                    style={{ marginLeft: "900px",
                     fontFamily: 'Fredoka One',
                     color: "white",
                     textDecoration:"none",
-                    
-                    
                 }}>Lançamento</a>
 
                 <a className="h3b" 

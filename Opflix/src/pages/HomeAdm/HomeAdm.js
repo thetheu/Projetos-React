@@ -112,7 +112,7 @@ export default class HomeAdm extends Component {
                 <NavAdm />
 
                 <section>
-                    <h3 style={{ color: "white" }}>Lançamentos</h3>
+                    <h3 style={{ paddingBottom: "25px", color: "white", marginLeft: "580px", fontFamily: "Fredoka One, cursive", fontSize: "30px"}}>Lançamentos</h3>
                     <table className="tabela">
                         <thead>
                             <tr>
@@ -154,8 +154,9 @@ export default class HomeAdm extends Component {
 
                 <div className="formulario">
                     <form onSubmit={this.cadastrarLancamento}>
+                    <h3 style={{paddingBottom: "25px", color: "white", marginLeft: "510px", fontFamily: "Fredoka One, cursive", fontSize: "30px"}}>Categoria</h3>
                         <input
-                            className="titulo"
+                            className="nome"
                             type="text"
                             placeholder="Nome do Lançamento"
                             value={this.state.titulo}
@@ -169,14 +170,14 @@ export default class HomeAdm extends Component {
                             onChange={this.sinopseLancamento}
                         />
                         <input
-                            className="tempoDuracao"
+                            className="tempo"
                             type="int"
                             placeholder="Tempo de Duração"
                             value={this.state.tempoDuracao}
                             onChange={this.tempoDuracaoLancamento}
                         />
                         <input
-                            className="dataLancamento"
+                            className="data"
                             type="date"
                             placeholder="Data de Lançamento"
                             value={this.state.dataLancamento}
@@ -222,6 +223,7 @@ export default class HomeAdm extends Component {
                         </button>
 
                     </form>
+                    
                 </div>
 
 

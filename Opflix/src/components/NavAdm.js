@@ -19,8 +19,12 @@ export default function Rodape(){
                     marginLeft: "20px",
                     padding: "10px",
                     textDecoration:"none",
-                    fontFamily: 'Fredoka One',
-                    color: "white"}}>OPFLIX</a>
+                    fontFamily: "Fredoka One, cursive",
+                    fontSize: "30px",
+                    color: "yellow",
+                    webkitTextStrokeWidth: "1px",
+                    webkitTextStrokeColor: "red"
+                    }}>OPFLIX</a>
 
                 <a className="h3a" 
                     href="/HomeAdm"

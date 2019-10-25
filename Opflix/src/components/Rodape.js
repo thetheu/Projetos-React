@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Rodape(){
     return(
-        <footer>
-            <section>
+        <footer style={{justifyContent: "baseline"}}>
+            <section style={{alignItems: "flex-end"}}>
                 <div style={{ color: "white", backgroundColor: "rgba(255, 255, 255, 0.13)", display: "flex", padding: "15px", justifyContent: "space-around"}}>
                     <h1 style={{fontFamily: 'Fredoka One'}}>OPFLIX</h1>
                     <p>© 2019 OpFlix</p>

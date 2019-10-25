@@ -7,12 +7,6 @@ body{
     background-color: black
 }
 
-.formulario{
-}
-.nome{
-    margin-left: 100px;
-}
-
 .tabela{
     border-collapse: collapse;
     border-spacing: 0;
@@ -22,15 +16,124 @@ body{
     color: #fff;
     margin-right: 30%;
 }
-.formulario{ 
-    width: 100%;
-    padding: 12px 20px;
+
+form{ 
+    /* padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 80px;
+    margin: 100px;
+
 }
-.tbody{
+.nome{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 500px;
+    margin-left: 330px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+}
+.sinopse{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 30px;
+    width: 500px;
+    height: 70px;
+    margin-left: 330px;
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+.tempo{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 300px;
+    margin-left: 445px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+
 }
 
+.data{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 300px;
+    margin-left: 445px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+
+}
+.categoria{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 500px;
+    margin-left: 330px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+
+}
+.veiculo{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 500px;
+    margin-left: 330px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+
+} 
+.classificacao{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 500px;
+    margin-left: 330px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+
+}
+.plataforma{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 500px;
+    margin-left: 330px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+
+}
+.identificacao{
+    padding-top: 7px;
+    text-align: center;
+    border-radius: 50px;
+    width: 500px;
+    margin-left: 330px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height: 15px;
+
+}
+.botao{
+    width: 300px;
+    margin-left: 450px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.452);
+    border-color: gray;
+    border-radius: 50px;
+
+}
