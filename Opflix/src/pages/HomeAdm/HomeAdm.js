@@ -32,7 +32,7 @@ export default class HomeAdm extends Component {
     }
 
     listarLancamentos = (event) => {
-        fetch("http://localhost:5000/api/filmeSeries", {
+        fetch("http://192.168.7.115:5000/api/filmeSeries", {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix') },
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -46,7 +46,7 @@ export default class HomeAdm extends Component {
     cadastrarLancamento = (event) => {
         event.preventDefault();
 
-        fetch('http://localhost:5000/api/filmeSeries', {
+        fetch('http://192.168.7.115:5000/api/filmeSeries', {
             method: "POST",
             headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix'),

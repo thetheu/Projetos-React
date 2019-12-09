@@ -9,6 +9,7 @@ import App from './App';
 import Cadastro from '../src/pages/Cadastro/Cadastro.js';
 import Home from '../src/pages/Home/Home.js';
 import Genero from '../src/pages/Generos/Generos.js';
+import Localizacao from '../src/pages/Localizacao/Localizacao.js'
 
 import * as serviceWorker from './serviceWorker';
 
@@ -52,9 +53,10 @@ const routing = (
             <Switch>
                 <Route exact path='/' component={App} />
                 <Route path='/Cadastro' component={Cadastro} />
+                <Route path='/Genero' component={Genero} />
+                <Route path='/Localizacao' component={Localizacao} />
                 <RotaPrivada path='/Home' component={Home} />
                 <RotaAdmin path='/HomeAdm' component={HomeAdm} />
-                <Route path='/Genero' component={Genero} />
             </Switch>
         </div>
     </Router>

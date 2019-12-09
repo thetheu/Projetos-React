@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 
 
 
-export default class Generos extends Component{
+export default class Generos extends Component {
 
     constructor() {
         super();
-        this.state={ 
+        this.state = {
             listaGenero: [],
             idCategoriaNavigation: [],
 
@@ -25,46 +25,46 @@ export default class Generos extends Component{
     }
 
 
-    listarGeneros = () =>{
-        fetch('http://localhost:5000/api/categoria', {
+    listarGeneros = () => {
+        fetch('http://192.168.7.115:5000/api/categoria', {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix') },
             "Content-Type": "application/json",
-            "Accept" : "application/json"
+            "Accept": "application/json"
         })
             .then(response => response.json())
-            .then(data => this.setState({ listaGenero: data}))
+            .then(data => this.setState({ listaGenero: data }))
             .catch(err => console.log(err))
     }
 
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                <NavAdm/>
+                <NavAdm />
                 <section>
-                    <h3 style={{color:"white"}}>Generos</h3>
-                    <table style={{color:"white"}}>
+                    <h3 style={{  color: "white", textAlign: "center", marginTop: "50px", fontFamily: "Fredoka One, cursive", fontSize: "30px"}}>Categorias</h3>
+                    <table style={{ color: "white" }}>
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>Número</th>
                                 <th>Categoria</th>
                             </tr>
                         </thead>
- 
-                                <tbody>
-                                    {this.state.listaGenero.map(element => {
-                                        return(
-                                            <tr key={element.idCategoria}>
-                                                <td>{element.idCategoria}</td>
-                                                <td>{element.nome}</td>
-                                            </tr>
-                                        )
-                                    })}                                   
-                                </tbody> 
+
+                        <tbody>
+                            {this.state.listaGenero.map(element => {
+                                return (
+                                    <tr key={element.idCategoria}>
+                                        <td>{element.idCategoria}</td>
+                                        <td>{element.nome}</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
                     </table>
                 </section>
 
-                <Rodape/>
+                <Rodape />
             </div>
         )
     }

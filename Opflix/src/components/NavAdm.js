@@ -28,13 +28,22 @@ export default function Rodape(){
 
                 <a className="h3a" 
                     href="/HomeAdm"
-                    style={{ marginLeft: "800px",
+                    style={{ marginLeft: "600px",
                     fontFamily: 'Fredoka One',
                     color: "white",
                     textDecoration:"none",
                 }}>Lançamento</a>
 
                 <a className="h3a" 
+                    href="/localizacao"
+                    style={{ marginLeft: "100px",
+                    fontFamily: 'Fredoka One',
+                    color: "white",
+                    textDecoration:"none",
+                    
+                    
+                }}>Localização</a>
+                   <a className="h3a" 
                     href="/genero"
                     style={{ marginLeft: "100px",
                     fontFamily: 'Fredoka One',

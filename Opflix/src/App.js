@@ -34,7 +34,7 @@ export default class App extends Component {
 
   efetuarLogin = (event) => {
     event.preventDefault();
-    Axios.post("http://localhost:5000/api/login", {
+    Axios.post("http://192.168.7.115:5000/api/login", {
       Email: this.state.email,
       Senha: this.state.senha,
     })
@@ -120,10 +120,10 @@ export default class App extends Component {
                   onChange={this.mudarEstadoSenha}
                 />
                 <button onClick={this.efetuarLogin}>Login</button>
-                <a href="/Cadastro" style={{textDecoration: "none", color: "white"}}>
+                <a href="/Cadastro" style={{ textDecoration: "none", color: "white" }}>
                   <p>Cadastre-se</p>
-                  </a>              
-                </div>
+                </a>
+              </div>
             </div>
           </div>
         </form>

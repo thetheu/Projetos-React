@@ -31,7 +31,7 @@ export default class Home extends Component {
     }
 
     listarLancamentos = () => {
-        fetch("http://localhost:5000/api/filmeSeries", {
+        fetch("http://192.168.7.115:5000/api/filmeSeries", {
             headers: { 'Authorization': 'Bearer ' + localStorage.getItem('usuario-OpFlix') },
             "Content-Type": "application/json",
             "Accept": "application/json"
